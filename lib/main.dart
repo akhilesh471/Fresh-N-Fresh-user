@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_n_fresh/applications/authentication/authentication_bloc.dart';
+import 'package:fresh_n_fresh/applications/order/orders_bloc.dart';
 import 'package:fresh_n_fresh/applications/category/category_bloc.dart';
 import 'package:fresh_n_fresh/applications/products/products_bloc.dart';
+import 'package:fresh_n_fresh/applications/quantity/counter_bloc.dart';
+import 'package:fresh_n_fresh/applications/user_details/userdetails_bloc.dart';
 import 'package:fresh_n_fresh/domain/core/injectable.dart';
 import 'package:fresh_n_fresh/presentation/homepage/homepage.dart';
 import 'package:fresh_n_fresh/presentation/login_signup/homepage.dart';
@@ -36,7 +39,21 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<CategoryBloc>()
         
+        ),
+        BlocProvider(
+          create: (context) => CounterBloc(),
+          
+        ),
+        BlocProvider(
+          create: (context) => getIt<UserdetailsBloc>(),
+       
+        ),
+        BlocProvider(
+          create: (context) => OrdersBloc(),
+          child: Container(),
         )
+        
+
       
       ],
       child: MaterialApp(

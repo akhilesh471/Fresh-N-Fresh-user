@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fresh_n_fresh/domain/products/models/models.dart';
+import 'package:fresh_n_fresh/presentation/checkout/checkout.dart';
 import 'package:fresh_n_fresh/presentation/products/bottom_section.dart';
 import 'package:fresh_n_fresh/presentation/products/top_section.dart';
 
 class ViewProducts extends StatefulWidget {
-  const ViewProducts({Key? key}) : super(key: key);
+  final Products model;
+  const ViewProducts({Key? key, required this.model}) : super(key: key);
 
   @override
   State<ViewProducts> createState() => _ViewProductsState();
@@ -15,19 +18,19 @@ class _ViewProductsState extends State<ViewProducts> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-          child: Container(
+          child: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Column(
           children: [
-            ShowCase(),
+            ShowCase(model: widget.model),
             Row(
               children: [
-                productNamePrice('Chicken'),
+                productNamePrice(widget.model.name),
                 SizedBox(
                   width: size.width * 0.03,
                 ),
-                productNamePrice('100/kg'),
+                productNamePrice('${widget.model.price}/${widget.model.units}'),
               ],
             ),
             SizedBox(
@@ -39,28 +42,28 @@ class _ViewProductsState extends State<ViewProducts> {
                 Container(
                   height: size.height * 0.15,
                   width: size.width * 0.8,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(50)),
                   ),
-                  // child: Expanded(child: Center(child: Text('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'))),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 10),
                     child: LimitedBox(
                       child: SingleChildScrollView(
-                        child: Text(
-                            '       dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa111111111111111111111111111111111111111'),
-                      ),
+                          child: Text(
+                        '  ${widget.model.description}',
+                        style: TextStyle(fontSize: 15),
+                      )),
                     ),
                   ),
                 )
               ],
             ),
-            const ProductDetails(),
+            ProductDetails(model: widget.model),
             SizedBox(
-              height: size.height * 0.11,
+              height: size.height * 0.037,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,19 +75,52 @@ class _ViewProductsState extends State<ViewProducts> {
                           BorderRadius.only(topRight: Radius.circular(50))),
                   width: size.width * 0.48,
                   height: size.height * 0.08,
-                  child: Center(child: Text('Buy Now',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),)),
+                  child: const Center(
+                      child: Text(
+                    'Add to Cart',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  )),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: ((context) {
+                      return CheckOut(
+                        model: widget.model,
+                      );
+                    })));
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                      ),
                     ),
+                    width: size.width * 0.48,
+                    height: size.height * 0.08,
+                    child: Center(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Buy Now',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          size: 19,
+                          color: Colors.white,
+                        )
+                      ],
+                    )),
                   ),
-                  width: size.width * 0.48,
-                  height: size.height * 0.08,
-                                    child: Center(child: Text('Add to Cart',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),)),
-
                 ),
               ],
             )

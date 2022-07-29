@@ -28,7 +28,7 @@ class HomePageDownSession extends StatelessWidget {
                 itemBuilder: (BuildContext ctx, index) {
                   return InkWell(onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                      return ViewProducts();
+                      return ViewProducts(model: state.productList[index], );
                     },));
                   },
                     child: Container(

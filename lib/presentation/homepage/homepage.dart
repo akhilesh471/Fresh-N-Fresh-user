@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_n_fresh/applications/category/category_bloc.dart';
 import 'package:fresh_n_fresh/applications/products/products_bloc.dart';
+import 'package:fresh_n_fresh/applications/user_details/userdetails_bloc.dart';
 import 'package:fresh_n_fresh/core/colors.dart';
+import 'package:fresh_n_fresh/presentation/help_&_support/message.dart';
 import 'package:fresh_n_fresh/presentation/homepage/homepage_downpart.dart';
 import 'package:fresh_n_fresh/presentation/homepage/widgets/widgets.dart';
 import 'package:fresh_n_fresh/presentation/nabvar/sidebar.dart';
@@ -17,8 +20,16 @@ class HomePageMain extends StatefulWidget {
 GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
 class _HomePageMainState extends State<HomePageMain> {
+  String? currentId;
+  @override
+  void initState() {
+    // TODO: implement initState
+   currentId = FirebaseAuth.instance.currentUser?.uid;
+   context.read<UserdetailsBloc>().add(UserdetailsEvent.getCurrentUser(id: currentId!));
+  }
   @override
   Widget build(BuildContext context) {
+    print(currentId);
     context.read<CategoryBloc>().add(const CategoryEvent.getCategoryList());
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;

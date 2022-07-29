@@ -3,7 +3,7 @@ class Products {
   final String category;
   final String name;
   final String quantity;
-  final String price;
+  final num price;
   final String units;
   final String description;
   final List<dynamic>? image;

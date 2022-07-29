@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:fresh_n_fresh/domain/products/models/models.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ShowCase extends StatefulWidget {
-  ShowCase({Key? key}) : super(key: key);
+  final Products model;
+const  ShowCase({Key? key, required this.model}) : super(key: key);
 
   @override
   State<ShowCase> createState() => _ShowCaseState();
@@ -21,9 +23,9 @@ class _ShowCaseState extends State<ShowCase> {
               height: size.height * 0.34,
               child: Stack(children: [
                 CarouselSlider.builder(
-                    itemCount: urlImages.length,
+                    itemCount: widget.model.image!.length,
                     itemBuilder: (context, index, realIndex) {
-                      final urlImage = urlImages[index];
+                      final urlImage = widget.model.image![index];
                       return buildImage(urlImage, index);
                     },
                     options: CarouselOptions(
@@ -37,7 +39,7 @@ class _ShowCaseState extends State<ShowCase> {
                     bottom: 0,
                     right: 165,
                     child: SizedBox(
-                        height: size.height * 0.05, child: buildIndicator())),
+                        height: size.height * 0.05, child: buildIndicator(length: widget.model.image!.length))),
                 Positioned(right: 5,top: 5,
                   child: IconButton(
                       onPressed: () {},
@@ -50,10 +52,10 @@ class _ShowCaseState extends State<ShowCase> {
               ]),
             );
   }
-  Widget buildIndicator() {
+  Widget buildIndicator({required int length}) {
     return AnimatedSmoothIndicator(
       activeIndex: activeIndex,
-      count: urlImages.length,
+      count: length,
       effect: ExpandingDotsEffect(),
     );
   }

@@ -10,7 +10,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fresh_n_fresh/domain/user/models/model.dart';
 import 'package:fresh_n_fresh/presentation/homepage/homepage.dart';
 import 'package:fresh_n_fresh/presentation/login_signup/homepage.dart';
-import 'package:fresh_n_fresh/presentation/login_signup/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
