@@ -15,3 +15,4 @@ class UserdetailsState with _$UserdetailsState {
             date: Timestamp.now()));
   }
 }
+

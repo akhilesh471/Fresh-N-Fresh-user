@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_n_fresh/applications/help_&_support/send_message.dart';
 import 'package:fresh_n_fresh/presentation/help_&_support/single_message.dart';
+import 'package:fresh_n_fresh/presentation/nabvar/sidebar.dart';
 var currentUserId;
 class Message extends StatefulWidget {
+
   const Message({Key? key}) : super(key: key);
 
   @override
@@ -14,15 +16,19 @@ class _MessageState extends State<Message> {
   final _messageController=TextEditingController();
    @override
   void initState() {
+     currentIndex=2;
    currentUserId = FirebaseAuth.instance.currentUser?.uid;
     super.initState();
   
   }
+
   @override
   Widget build(BuildContext context) {
     print(currentUserId);
+  
     return Scaffold(
       appBar: AppBar(),
+      drawer: Sidebar(),
       body: SafeArea(
           child: Container(
         child: Column(children: [
@@ -62,7 +68,7 @@ class _MessageState extends State<Message> {
                       child: Text("say hi to your friend"),
                     );
                   }
-                } else {
+                } else { 
                   return Center(
                     child: CircularProgressIndicator(),
                   );

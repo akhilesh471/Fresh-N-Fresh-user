@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fresh_n_fresh/applications/add_to_cart/add_to_cart_bloc.dart';
 import 'package:fresh_n_fresh/applications/authentication/authentication_bloc.dart';
 import 'package:fresh_n_fresh/applications/order/orders_bloc.dart';
 import 'package:fresh_n_fresh/applications/category/category_bloc.dart';
 import 'package:fresh_n_fresh/applications/products/products_bloc.dart';
 import 'package:fresh_n_fresh/applications/quantity/counter_bloc.dart';
 import 'package:fresh_n_fresh/applications/user_details/userdetails_bloc.dart';
+import 'package:fresh_n_fresh/applications/wish_list/wish_list_bloc.dart';
 import 'package:fresh_n_fresh/domain/core/injectable.dart';
+import 'package:fresh_n_fresh/presentation/add_to_cart/add_to_cart.dart';
 import 'package:fresh_n_fresh/presentation/homepage/homepage.dart';
 import 'package:fresh_n_fresh/presentation/login_signup/homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,7 +53,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => OrdersBloc(),
-          child: Container(),
+         
+        ),
+        BlocProvider(
+          create: (context) => getIt<AddToCartBloc>(),
+          
+        ),
+        BlocProvider(
+          create: (context) =>getIt<WishListBloc>(),
+          
         )
         
 

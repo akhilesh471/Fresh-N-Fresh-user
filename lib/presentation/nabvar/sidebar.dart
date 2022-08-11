@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fresh_n_fresh/presentation/add_to_cart/add_to_cart.dart';
 import 'package:fresh_n_fresh/presentation/help_&_support/message.dart';
+import 'package:fresh_n_fresh/presentation/homepage/homepage.dart';
+import 'package:fresh_n_fresh/presentation/my_orders/myorders.dart';
+import 'package:fresh_n_fresh/presentation/profile/profile.dart';
+import 'package:fresh_n_fresh/presentation/wishlist/wishlist.dart';
 
 var currentIndex = 0;
 
@@ -30,8 +35,7 @@ class _SidebarState extends State<Sidebar> {
           ),
           Expanded(
             child: ListView.builder(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-
+              padding: const EdgeInsets.only(left: 8, right: 8),
               itemBuilder: (context, index) {
                 return listMenu(
                   menu[index],
@@ -45,18 +49,61 @@ class _SidebarState extends State<Sidebar> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (ctx) {
+                            return const HomePageMain();
+                          },
+                        ),
+                      );
+                    }
+                    if (index == 1) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) {
+                            return const Profile();
+                          },
+                        ),
+                      );
+                    }
+                    if (index == 2) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) {
                             return const Message();
+                          },
+                        ),
+                      );
+                    }
+                    if (index == 3) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) {
+                            return const AddToCart();
+                          },
+                        ),
+                      );
+                    }
+                    if (index == 4) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) {
+                            return const MyOrders();
+                          },
+                        ),
+                      );
+                    }
+                    if (index == 5) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) {
+                            return const Wishlist();
                           },
                         ),
                       );
                     }
                   }),
                 );
-                
               },
               itemCount: menu.length,
             ),
-            
           )
         ],
       ),
@@ -83,10 +130,18 @@ ListTile listMenu(
 }
 
 List<String> menu = [
+  'Dashboard',
+  'profile',
   'Help & Support',
-  
+  'Cart',
+  'My Orders',
+  'Wish List'
 ];
 List<IconData> menuIcons = [
+  Icons.dashboard,
+  Icons.person_sharp,
   Icons.people,
- 
+  Icons.local_grocery_store,
+  Icons.shopping_bag_outlined,
+  Icons.favorite
 ];

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresh_n_fresh/applications/category/category_bloc.dart';
 import 'package:fresh_n_fresh/applications/products/products_bloc.dart';
+import 'package:fresh_n_fresh/applications/quantity/counter_bloc.dart';
 import 'package:fresh_n_fresh/applications/user_details/userdetails_bloc.dart';
+import 'package:fresh_n_fresh/applications/wish_list/wish_list_bloc.dart';
 import 'package:fresh_n_fresh/core/colors.dart';
 import 'package:fresh_n_fresh/presentation/help_&_support/message.dart';
 import 'package:fresh_n_fresh/presentation/homepage/homepage_downpart.dart';
@@ -17,24 +19,32 @@ class HomePageMain extends StatefulWidget {
   State<HomePageMain> createState() => _HomePageMainState();
 }
 
-GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
 class _HomePageMainState extends State<HomePageMain> {
+ GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   String? currentId;
   @override
   void initState() {
-    // TODO: implement initState
-   currentId = FirebaseAuth.instance.currentUser?.uid;
+    currentId = FirebaseAuth.instance.currentUser?.uid;
    context.read<UserdetailsBloc>().add(UserdetailsEvent.getCurrentUser(id: currentId!));
+  context.read<WishListBloc>().add(WishListEvent.getData());
   }
   @override
   Widget build(BuildContext context) {
-    print(currentId);
+    
+  print("REBUILD>>>>>>>>>>>>>>>>");
+  
     context.read<CategoryBloc>().add(const CategoryEvent.getCategoryList());
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _globalKey,
+      // appBar: AppBar(),
+      // appBar: PreferredSize(
+      //     preferredSize: Size.fromHeight(50.0), // here the desired height
+      //     child: AppBar(
+      //     ),
+      // ),
       drawer: const Sidebar(),
       body: SafeArea(
         child: ListView(
@@ -189,6 +199,7 @@ class _HomePageMainState extends State<HomePageMain> {
                                       scrollDirection: Axis.horizontal,
                                       itemCount: state.categoryList.length,
                                       itemBuilder: (context, index) {
+                                   
                                         return GestureDetector(
                                           onTap: () {
                                             context.read<ProductsBloc>().add(

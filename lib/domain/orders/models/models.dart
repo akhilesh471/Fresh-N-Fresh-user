@@ -8,27 +8,36 @@ class Orders {
   final String productName;
   final num quantity;
   final num amount;
-   String? paymentId;
+  String? paymentId;
   final String productId;
   final Timestamp date;
- dynamic image;
+  dynamic image;
+  final String email;
+  final String number;
+  String? status;
+  final String units;
 
-Orders({required this.userId, 
+  Orders(
+      {this.status,
+      required this.email,
+      required this.number,
+      required this.units,
+      required this.userId,
       required this.userName,
       required this.address,
       required this.productName,
       required this.quantity,
       required this.amount,
-       this.paymentId,
+      this.paymentId,
       required this.productId,
       required this.date,
-       this.image,
+      this.image,
       this.id});
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'userId':userId,
+      'userId': userId,
       'userName': userName,
       'address': address,
       'productName': productName,
@@ -36,8 +45,12 @@ Orders({required this.userId,
       'amount': amount,
       'paymentId': paymentId,
       'productId': productId,
-      'image':image,
-      'date': date
+      'image': image,
+      'date': date,
+      'status': status,
+      'email': email,
+      'PhNumber': number,
+      'units': units,
     };
   }
 
@@ -53,6 +66,9 @@ Orders({required this.userId,
         image: json['image'],
         paymentId: json['paymentId'],
         productId: json['productId'],
-        date: json['date']);
+        date: json['date'],
+        email: json['email'],
+        number: json['PhNumber'],
+        units: json['units']);
   }
 }

@@ -21,8 +21,8 @@ class ShowProductsRepository implements IShowProductsRepo {
             await productData.where('category', isEqualTo: filteredLIst).get();
         list = result.docs.map((e) => Products.fromJson(e.data())).toList();
       }
-
-      print(list);
+print("list.first.isFavourite");
+      // print(list);
       return right(list);
     } catch (e) {
       print(e);

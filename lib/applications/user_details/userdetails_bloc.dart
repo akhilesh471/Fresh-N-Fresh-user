@@ -9,17 +9,22 @@ import 'package:injectable/injectable.dart';
 part 'userdetails_event.dart';
 part 'userdetails_state.dart';
 part 'userdetails_bloc.freezed.dart';
+
 @injectable
 class UserdetailsBloc extends Bloc<UserdetailsEvent, UserdetailsState> {
   final IShowUserRepo _iShowUserRepo;
   UserdetailsBloc(this._iShowUserRepo) : super(UserdetailsState.initial()) {
-    on<_GetCurrentUser>((event, emit) async{
-emit(state.copyWith(isLoading: true,modelDataFailureOrSuccess: none()));
-final Either<String,UserModel> modelOption =await _iShowUserRepo.getUserData(id: event.id);
-emit(modelOption.fold((failure) => state.copyWith(isLoading:false,modelDataFailureOrSuccess: Some(left(failure))
-), (success) =>state.copyWith(isLoading: false,modelDataFailureOrSuccess: Some(right(success)),
-model: success
- )));
+    on<_GetCurrentUser>((event, emit) async {
+      emit(state.copyWith(isLoading: true, modelDataFailureOrSuccess: none()));
+      final Either<String, UserModel> modelOption =
+          await _iShowUserRepo.getUserData(id: event.id);
+      emit(modelOption.fold(
+          (failure) => state.copyWith(
+              isLoading: false, modelDataFailureOrSuccess: Some(left(failure))),
+          (success) => state.copyWith(
+              isLoading: false,
+              modelDataFailureOrSuccess: Some(right(success)),
+              model: success)));
     });
   }
 }

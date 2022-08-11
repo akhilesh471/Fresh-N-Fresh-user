@@ -24,6 +24,8 @@ class UserDetails extends StatelessWidget {
              BlocBuilder<UserdetailsBloc, UserdetailsState>(
               builder: (context, state) {
                      currentUserModel=state.model;
+                     print('object');
+                     print(currentUserModel!.email);
                 return Container(
                   padding: EdgeInsets.all(8),
                   color: Colors.white,

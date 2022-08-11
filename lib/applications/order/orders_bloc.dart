@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fresh_n_fresh/domain/orders/models/models.dart';
 
@@ -14,6 +15,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       final jsonData = event.model.toJson();
       await FirebaseFirestore.instance.collection('Orders').add(jsonData).then((value) =>value.update({'id':value.id}) );
     });
+  
   }
-
 }

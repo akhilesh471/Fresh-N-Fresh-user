@@ -30,6 +30,7 @@ class _CheckOutState extends State<CheckOut> {
     razorpay!.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlerPaymentSuccess);
     razorpay!.on(Razorpay.EVENT_PAYMENT_ERROR, handlerErrorFailure);
     razorpay!.on(Razorpay.EVENT_EXTERNAL_WALLET, handlerExternalWallet);
+    
   }
 
   @override
@@ -96,6 +97,7 @@ class _CheckOutState extends State<CheckOut> {
               ElevatedButton(
                   onPressed: () {
                     ordermodel = Orders(
+                       
                         userId: currentUserModel!.id!,
                         userName: currentUserModel!.name,
                         address: 'Kochi',
@@ -104,7 +106,7 @@ class _CheckOutState extends State<CheckOut> {
                         amount: amount!,
                         productId: widget.model.id!,
                         image: widget.model.image![0],
-                        date: Timestamp.now());    
+                        date: Timestamp.now(), units: widget.model.units, email:currentUserModel!.email, number: currentUserModel!.number,status: 'Processing');    
                     pay(amount!);
                      
                   },

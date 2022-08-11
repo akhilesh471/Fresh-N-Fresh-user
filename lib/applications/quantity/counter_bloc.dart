@@ -18,5 +18,18 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
         emit(CounterState(count: currentState-1));
       }
     });
+    on<_SetIntial>((event, emit) {
+  
+        emit(CounterState(count: 1));
+    
+    });
+    on<_ReasignValue>((event, emit) {
+
+      print('working');
+        emit(CounterState(count: event.count));
+     print('worked');
+    });
+
+
   }
 }

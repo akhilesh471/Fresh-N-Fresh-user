@@ -7,9 +7,11 @@ class Products {
   final String units;
   final String description;
   final List<dynamic>? image;
+  
 
   Products(
       {this.id,
+     
       required this.category,
       required this.name,
       required this.quantity,
@@ -20,6 +22,7 @@ class Products {
 
   Map<String, dynamic> toJson() {
     return {
+      
       'id': id,
       'category': category,
       'name': name,
@@ -33,6 +36,7 @@ class Products {
 
   static Products fromJson(Map<String, dynamic> json){
     return Products(
+
         category: json['category'],
         name: json['name'],
         quantity: json['quantity'],
@@ -40,6 +44,6 @@ class Products {
         units: json['units'],
         description: json['description'],
         id: json['id'],
-        image: json['image']);
+        image: json['image'], );
   }
 }

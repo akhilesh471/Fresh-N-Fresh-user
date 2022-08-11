@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fresh_n_fresh/applications/add_to_cart/add_to_cart_bloc.dart';
+import 'package:fresh_n_fresh/applications/quantity/counter_bloc.dart';
+import 'package:fresh_n_fresh/domain/add_to_cart/models/models.dart';
 import 'package:fresh_n_fresh/domain/products/models/models.dart';
 import 'package:fresh_n_fresh/presentation/checkout/checkout.dart';
 import 'package:fresh_n_fresh/presentation/products/bottom_section.dart';
@@ -13,6 +18,12 @@ class ViewProducts extends StatefulWidget {
 }
 
 class _ViewProductsState extends State<ViewProducts> {
+  @override
+  void initState() {
+    context.read<CounterBloc>().add(CounterEvent.setIntial());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -68,21 +79,38 @@ class _ViewProductsState extends State<ViewProducts> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(50))),
-                  width: size.width * 0.48,
-                  height: size.height * 0.08,
-                  child: const Center(
-                      child: Text(
-                    'Add to Cart',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  )),
+                GestureDetector(
+                  onTap: () {
+                    final model = Cart(
+                      units: widget.model.units,
+                      id:widget.model.id ,
+                        productName: widget.model.name,
+                        image: widget.model.image![0],
+                        unitAmount: widget.model.price,
+                        quantity: quantity!,
+                        amount: totalAmount!,
+                        productId: widget.model.id!,
+                        date: Timestamp.now());
+                    context
+                        .read<AddToCartBloc>()
+                        .add(AddToCartEvent.add(model: model,id: widget.model.id!));
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(50))),
+                    width: size.width * 0.48,
+                    height: size.height * 0.08,
+                    child: const Center(
+                        child: Text(
+                      'Add to Cart',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    )),
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {

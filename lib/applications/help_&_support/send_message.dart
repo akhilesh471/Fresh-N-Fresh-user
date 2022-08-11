@@ -27,7 +27,7 @@ Future<void> sendMesssage(
         .doc('r2H4ypKAh5T0TcNjYDHcf72rcBE3')
         .set({'lastmsg': message});
   });
-
+  
 await FirebaseFirestore.instance.collection('userData').doc('r2H4ypKAh5T0TcNjYDHcf72rcBE3').collection('messages').doc(currentuserId).collection('chats').add({
    "senderId": currentuserId,
     "receiverId": 'r2H4ypKAh5T0TcNjYDHcf72rcBE3',
@@ -37,5 +37,4 @@ await FirebaseFirestore.instance.collection('userData').doc('r2H4ypKAh5T0TcNjYDH
 }).then((value) {
   FirebaseFirestore.instance.collection("userData").doc('r2H4ypKAh5T0TcNjYDHcf72rcBE3').collection('messages').doc(currentuserId).set({"lastmsg":message});
 });
-
 }
