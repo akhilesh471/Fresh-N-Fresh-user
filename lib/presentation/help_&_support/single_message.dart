@@ -5,7 +5,7 @@ class SingleMessage extends StatelessWidget {
   final String message;
   final bool isMe;
 final Timestamp time;
-  const SingleMessage({super.key, required this.message, required this.isMe, required this.time});
+  const SingleMessage({ key, required this.message, required this.isMe, required this.time});
 
   @override
   Widget build(BuildContext context) {
