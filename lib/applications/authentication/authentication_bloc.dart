@@ -56,7 +56,7 @@ class AuthenticationBloc
             Fluttertoast.showToast(msg: e.code);
           }
         } catch (e) {
-          print(e);
+          log(e.toString());
         }
       });
     });

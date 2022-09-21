@@ -14,6 +14,17 @@ part 'userdetails_bloc.freezed.dart';
 class UserdetailsBloc extends Bloc<UserdetailsEvent, UserdetailsState> {
   final IShowUserRepo _iShowUserRepo;
   UserdetailsBloc(this._iShowUserRepo) : super(UserdetailsState.initial()) {
+
+on<_UpdateCurrentUser>((event, emit)async{
+  final json=await event.model.toJson();
+  print(event.model.name);
+  print('object');
+  FirebaseFirestore.instance.collection('userData').doc(event.model.id).update(json);
+  add( _GetCurrentUser(id: event.model.id!));
+});
+
+
+
     on<_GetCurrentUser>((event, emit) async {
       emit(state.copyWith(isLoading: true, modelDataFailureOrSuccess: none()));
       final Either<String, UserModel> modelOption =

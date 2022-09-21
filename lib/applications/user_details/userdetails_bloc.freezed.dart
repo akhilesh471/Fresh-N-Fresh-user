@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserdetailsEvent {
-  String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) getCurrentUser,
+    required TResult Function(UserModel model, String image) updateCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String id)? getCurrentUser,
+    TResult Function(UserModel model, String image)? updateCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? getCurrentUser,
+    TResult Function(UserModel model, String image)? updateCurrentUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentUser value) getCurrentUser,
+    required TResult Function(_UpdateCurrentUser value) updateCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetCurrentUser value)? getCurrentUser,
+    TResult Function(_UpdateCurrentUser value)? updateCurrentUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentUser value)? getCurrentUser,
+    TResult Function(_UpdateCurrentUser value)? updateCurrentUser,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UserdetailsEventCopyWith<UserdetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,7 +61,6 @@ abstract class $UserdetailsEventCopyWith<$Res> {
   factory $UserdetailsEventCopyWith(
           UserdetailsEvent value, $Res Function(UserdetailsEvent) then) =
       _$UserdetailsEventCopyWithImpl<$Res>;
-  $Res call({String id});
 }
 
 /// @nodoc
@@ -71,27 +71,13 @@ class _$UserdetailsEventCopyWithImpl<$Res>
   final UserdetailsEvent _value;
   // ignore: unused_field
   final $Res Function(UserdetailsEvent) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$GetCurrentUserCopyWith<$Res>
-    implements $UserdetailsEventCopyWith<$Res> {
+abstract class _$GetCurrentUserCopyWith<$Res> {
   factory _$GetCurrentUserCopyWith(
           _GetCurrentUser value, $Res Function(_GetCurrentUser) then) =
       __$GetCurrentUserCopyWithImpl<$Res>;
-  @override
   $Res call({String id});
 }
 
@@ -153,6 +139,7 @@ class _$_GetCurrentUser implements _GetCurrentUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) getCurrentUser,
+    required TResult Function(UserModel model, String image) updateCurrentUser,
   }) {
     return getCurrentUser(id);
   }
@@ -161,6 +148,7 @@ class _$_GetCurrentUser implements _GetCurrentUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String id)? getCurrentUser,
+    TResult Function(UserModel model, String image)? updateCurrentUser,
   }) {
     return getCurrentUser?.call(id);
   }
@@ -169,6 +157,7 @@ class _$_GetCurrentUser implements _GetCurrentUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? getCurrentUser,
+    TResult Function(UserModel model, String image)? updateCurrentUser,
     required TResult orElse(),
   }) {
     if (getCurrentUser != null) {
@@ -181,6 +170,7 @@ class _$_GetCurrentUser implements _GetCurrentUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentUser value) getCurrentUser,
+    required TResult Function(_UpdateCurrentUser value) updateCurrentUser,
   }) {
     return getCurrentUser(this);
   }
@@ -189,6 +179,7 @@ class _$_GetCurrentUser implements _GetCurrentUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetCurrentUser value)? getCurrentUser,
+    TResult Function(_UpdateCurrentUser value)? updateCurrentUser,
   }) {
     return getCurrentUser?.call(this);
   }
@@ -197,6 +188,7 @@ class _$_GetCurrentUser implements _GetCurrentUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentUser value)? getCurrentUser,
+    TResult Function(_UpdateCurrentUser value)? updateCurrentUser,
     required TResult orElse(),
   }) {
     if (getCurrentUser != null) {
@@ -209,11 +201,156 @@ class _$_GetCurrentUser implements _GetCurrentUser {
 abstract class _GetCurrentUser implements UserdetailsEvent {
   const factory _GetCurrentUser({required final String id}) = _$_GetCurrentUser;
 
-  @override
   String get id => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$GetCurrentUserCopyWith<_GetCurrentUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$UpdateCurrentUserCopyWith<$Res> {
+  factory _$UpdateCurrentUserCopyWith(
+          _UpdateCurrentUser value, $Res Function(_UpdateCurrentUser) then) =
+      __$UpdateCurrentUserCopyWithImpl<$Res>;
+  $Res call({UserModel model, String image});
+}
+
+/// @nodoc
+class __$UpdateCurrentUserCopyWithImpl<$Res>
+    extends _$UserdetailsEventCopyWithImpl<$Res>
+    implements _$UpdateCurrentUserCopyWith<$Res> {
+  __$UpdateCurrentUserCopyWithImpl(
+      _UpdateCurrentUser _value, $Res Function(_UpdateCurrentUser) _then)
+      : super(_value, (v) => _then(v as _UpdateCurrentUser));
+
+  @override
+  _UpdateCurrentUser get _value => super._value as _UpdateCurrentUser;
+
+  @override
+  $Res call({
+    Object? model = freezed,
+    Object? image = freezed,
+  }) {
+    return _then(_UpdateCurrentUser(
+      model: model == freezed
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateCurrentUser implements _UpdateCurrentUser {
+  const _$_UpdateCurrentUser({required this.model, required this.image});
+
+  @override
+  final UserModel model;
+  @override
+  final String image;
+
+  @override
+  String toString() {
+    return 'UserdetailsEvent.updateCurrentUser(model: $model, image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UpdateCurrentUser &&
+            const DeepCollectionEquality().equals(other.model, model) &&
+            const DeepCollectionEquality().equals(other.image, image));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(model),
+      const DeepCollectionEquality().hash(image));
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateCurrentUserCopyWith<_UpdateCurrentUser> get copyWith =>
+      __$UpdateCurrentUserCopyWithImpl<_UpdateCurrentUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) getCurrentUser,
+    required TResult Function(UserModel model, String image) updateCurrentUser,
+  }) {
+    return updateCurrentUser(model, image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String id)? getCurrentUser,
+    TResult Function(UserModel model, String image)? updateCurrentUser,
+  }) {
+    return updateCurrentUser?.call(model, image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? getCurrentUser,
+    TResult Function(UserModel model, String image)? updateCurrentUser,
+    required TResult orElse(),
+  }) {
+    if (updateCurrentUser != null) {
+      return updateCurrentUser(model, image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCurrentUser value) getCurrentUser,
+    required TResult Function(_UpdateCurrentUser value) updateCurrentUser,
+  }) {
+    return updateCurrentUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetCurrentUser value)? getCurrentUser,
+    TResult Function(_UpdateCurrentUser value)? updateCurrentUser,
+  }) {
+    return updateCurrentUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCurrentUser value)? getCurrentUser,
+    TResult Function(_UpdateCurrentUser value)? updateCurrentUser,
+    required TResult orElse(),
+  }) {
+    if (updateCurrentUser != null) {
+      return updateCurrentUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCurrentUser implements UserdetailsEvent {
+  const factory _UpdateCurrentUser(
+      {required final UserModel model,
+      required final String image}) = _$_UpdateCurrentUser;
+
+  UserModel get model => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$UpdateCurrentUserCopyWith<_UpdateCurrentUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

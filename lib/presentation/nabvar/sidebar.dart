@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fresh_n_fresh/applications/user_details/userdetails_bloc.dart';
 import 'package:fresh_n_fresh/presentation/add_to_cart/add_to_cart.dart';
 import 'package:fresh_n_fresh/presentation/help_&_support/message.dart';
 import 'package:fresh_n_fresh/presentation/homepage/homepage.dart';
@@ -58,7 +60,11 @@ class _SidebarState extends State<Sidebar> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (ctx) {
-                            return const Profile();
+                            return BlocBuilder<UserdetailsBloc, UserdetailsState>(
+                              builder: (context, state) {
+                                return Profile(model: state.model,);
+                              },
+                            );
                           },
                         ),
                       );
